@@ -27,35 +27,6 @@ The dashboard currently presents descriptive analysis from the CSV data. The sav
 - Python 3.14
 - The packages listed in `requirements.txt`
 
-## Install and run
-
-Clone the repository and enter the project directory:
-
-```bash
-git clone https://github.com/mystic8340-ai/churn-pridiction.git
-cd churn-pridiction
-```
-
-Create a virtual environment and install the dependencies.
-
-**Windows PowerShell:**
-
-```powershell
-py -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m streamlit run app.py
-```
-
-**macOS or Linux:**
-
-```bash
-python3 -m venv .venv
-./.venv/bin/python -m pip install -r requirements.txt
-./.venv/bin/python -m streamlit run app.py
-```
-
-Streamlit prints the local address when it starts; the default is <http://localhost:8501>.
-
 ## Use another dataset
 
 In the dashboard sidebar, under **Dataset**, upload a CSV. The uploaded file is used for that dashboard session. Remove it to switch back to `European_Bank_Cleaned.csv`.
