@@ -4,12 +4,15 @@ A Streamlit dashboard for exploring customer churn across geography, age, tenure
 
 ## Features
 
-- Customer count, churned customer count, churn rate, and retention rate
-- Geography filter that updates the dashboard summaries
+- Overall customer, churn, churn-rate, and retention KPIs
+- Dynamic filtered-customer and filtered-churn-rate KPIs
+- Sidebar filters for geography, gender, age range, and balance segment
 - Churn charts by geography, age group, tenure group, and active-member status
 - High-value customer summary and churn by geography
 - Customer-level drill-down table
 - CSV upload with required-column and numeric-value checks
+
+The top KPI row summarizes the full active dataset. The filtered KPIs, charts, and drill-down table respond to the selected sidebar filters.
 
 ## Project files
 

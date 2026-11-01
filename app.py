@@ -172,9 +172,45 @@ selected_geo = st.sidebar.multiselect(
     default=sorted(df['Geography'].unique())
 )
 
+gender_options = sorted(df['Gender'].dropna().astype(str).unique())
+selected_gender = st.sidebar.multiselect(
+    "Select Gender",
+    options=gender_options,
+    default=gender_options
+)
+
+age_min = int(np.floor(df['Age'].min()))
+age_max = int(np.ceil(df['Age'].max()))
+if age_min < age_max:
+    selected_age_range = st.sidebar.slider(
+        "Select Age Range",
+        min_value=age_min,
+        max_value=age_max,
+        value=(age_min, age_max),
+        step=1
+    )
+else:
+    selected_age_range = (age_min, age_max)
+    st.sidebar.caption(f"All customers are age {age_min}.")
+
+segment_options = sorted(df['Balance_Segment'].dropna().astype(str).unique())
+selected_segments = st.sidebar.multiselect(
+    "Select Balance Segment",
+    options=segment_options,
+    default=segment_options
+)
+
 filtered_df = df[
     df['Geography'].isin(selected_geo)
+    & df['Gender'].astype(str).isin(selected_gender)
+    & df['Age'].between(*selected_age_range)
+    & df['Balance_Segment'].astype(str).isin(selected_segments)
 ]
+
+if filtered_df.empty:
+    st.warning("No customers match the selected filters. Adjust the filters to continue.")
+    st.stop()
+
 filtered_churn_rate = filtered_df['Exited'].mean() * 100
 
 filtered_churned = int(filtered_df['Exited'].sum())
